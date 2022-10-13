@@ -43,20 +43,28 @@
 	    <version>${mysql-connector-version}</version>
 	</dependency>
 	
-	
-	<dependency>
-	    <groupId>org.hibernate</groupId>
-	    <artifactId>hibernate-entitymanager</artifactId>
-	    <version>${hibernate-entity-version}</version>
-	</dependency>
-	
-	
+
 	
 	<!-- https://mvnrepository.com/artifact/org.springframework.data/spring-data-jpa -->
 	<dependency>
 	    <groupId>org.springframework.data</groupId>
 	    <artifactId>spring-data-jpa</artifactId>
 	    <version>${spring-data-jpa-version}</version>
+	</dependency>
+	
+	<!-- https://mvnrepository.com/artifact/org.springframework/spring-context -->
+	<dependency>
+	    <groupId>org.springframework</groupId>
+	    <artifactId>spring-context</artifactId>
+	    <version>${spring-version}</version>
+	</dependency>
+	
+	<!-- https://mvnrepository.com/artifact/org.springframework/spring-context -->
+	<dependency>
+	    <groupId>org.springframework</groupId>
+	    <artifactId>spring-test</artifactId>
+	    <version>${spring-version}</version>
+	    <scope>test</scope>
 	</dependency>
 	
 	<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-dbcp2 -->
@@ -73,21 +81,7 @@
 	    <version>${hibernate-jpa-version}</version>
 	</dependency>
 	
-	
-	<!-- https://mvnrepository.com/artifact/org.springframework/spring-context -->
-	<dependency>
-	    <groupId>org.springframework</groupId>
-	    <artifactId>spring-context</artifactId>
-	    <version>${spring-version}</version>
-	</dependency>
-	
-	<!-- https://mvnrepository.com/artifact/org.springframework/spring-context -->
-	<dependency>
-	    <groupId>org.springframework</groupId>
-	    <artifactId>spring-test</artifactId>
-	    <version>${spring-version}</version>
-	    <scope>test</scope>
-	</dependency>
+
 	
     
   </dependencies>
