@@ -7,14 +7,15 @@
 			<meta name="viewport" content="width=device-width, user-scalable=no"/>      		
       </h:head>
       
-      <h:body>
+      <h:body style="background-color: black">
       
 	      <div class="card ui-fluid">
 	      		<h:form id="formlogin">
-	      			<p:growl id="growl"/>
+	      		
+	      			<p:growl id="growl" showDetail="true" skipDetailIfEqualsSummary="true"/>
 	      		
 		      		<p:panel id="pnlLogin" header="Inicio de Sesión" style="text-align:center">
-		      			<p:graphicImage name="images/img-login.png"/>
+		      			<p:graphicImage name="images/fondo_musica.png" width="25%"/>
 		      		
 		      			<p:panelGrid id="pnlGridLogin" columns="1" columnClasses="ui-g-12 ui-md-12,ui-g-12 ui-md-12" 
 		      			layout="grid" styleClass="ui-panelgrid-black ui-fluid">
@@ -28,9 +29,10 @@
 		      				required="true" requiredMessage="La contraseña es requerida"/>
 		      				
 		      				<p:outputLabel></p:outputLabel>
-		      				<p:commandButton value="Entrar" action="#{loginController.ingresar}" update="pnlGridLogin,growl"/>
+		      				<p:commandButton value="Entrar" action="#{loginController.entrar}" update="pnlGridLogin,growl"/>
 	      				</p:panelGrid>
 		      		</p:panel>
+		      		
 	      		</h:form>    
 	      	</div>
       </h:body>

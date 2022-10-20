@@ -12,6 +12,7 @@
         http://www.springframework.org/schema/tx/spring-tx.xsd
         http://www.springframework.org/schema/data/jpa
     	https://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
+    	
 
 	<!-- ::::::::::::::: PERMITE EL USO DE ANOTACIONES CON SPRING EN EL BASE PACKAGE MENCIONADO ::::::::: -->
 
@@ -39,7 +40,7 @@
 	
 	<bean id="emf" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
 		<property name="dataSource" ref="dataSource"></property>
-		<property name="packagesToScan" value="com.wilProject.tiendaMusicalentities.entities"></property>
+		<property name="packagesToScan" value="com.wilProject.tiendaMusicalEntities.entities"></property>
 		<property name="jpaProperties">
 			<props>
 				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
@@ -64,5 +65,5 @@
 	
 	<!-- :::::::::::::::: ETIQUETA QUE PERMITE REGISTRAR LAS CLASES QUE SE ENCARGAN DE EJECUTAR LAS TRANSACCIONES A LA BASE DE DATOS (DAO) ::::::::: -->
 	
-	<jpa:repositories base-package="com.wilProject.tiendaMusicaldata.repositories" entity-manager-factory-ref="emf"></jpa:repositories>
+	<jpa:repositories base-package="com.wilProject.tiendaMusicalData.dao" entity-manager-factory-ref="emf"></jpa:repositories>
 </beans>
