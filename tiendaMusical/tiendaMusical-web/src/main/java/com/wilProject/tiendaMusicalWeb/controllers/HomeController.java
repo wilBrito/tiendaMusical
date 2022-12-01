@@ -1,8 +1,10 @@
 package com.wilProject.tiendaMusicalWeb.controllers;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
@@ -12,6 +14,8 @@ import org.apache.logging.log4j.Logger;
 
 import com.wilProject.tiendaMusicalEntities.dto.ArtistaAlbumDto;
 import com.wilProject.tiendaMusicalServices.service.HomeService;
+import com.wilProject.tiendaMusicalWeb.session.SessionBean;
+import com.wilProject.tiendaMusicalWeb.utils.CommonUtils;
 
 @ManagedBean
 @ViewScoped
@@ -25,6 +29,10 @@ public class HomeController {
 	
 	@ManagedProperty("#{homeServiceImpl}")
 	private HomeService homeServiceImpl;
+	
+	@ManagedProperty("#{sessionBean}")
+	private SessionBean sessionBean;
+	
 	
 	@PostConstruct
 	public void init() {
@@ -44,6 +52,18 @@ public class HomeController {
 
 			});
 		}
+	}
+	
+	public void verDetalleAlbum(ArtistaAlbumDto artistaAlbumDto) {
+		this.sessionBean.setArtistaAlbumDto(artistaAlbumDto);
+		
+		try {
+			CommonUtils.redireccionar("/pages/cliente/detalle.xhtml");
+		} catch (IOException e) {
+			CommonUtils.mostrarMensaje(FacesMessage.SEVERITY_ERROR, "UPS!!", "Problema al cargar la página");
+			e.printStackTrace();
+		}
+		
 	}
 	
 	
@@ -71,6 +91,16 @@ public class HomeController {
 
 	public void setHomeServiceImpl(HomeService homeServiceImpl) {
 		this.homeServiceImpl = homeServiceImpl;
+	}
+
+
+	public SessionBean getSessionBean() {
+		return sessionBean;
+	}
+
+
+	public void setSessionBean(SessionBean sessionBean) {
+		this.sessionBean = sessionBean;
 	}
 	
 	

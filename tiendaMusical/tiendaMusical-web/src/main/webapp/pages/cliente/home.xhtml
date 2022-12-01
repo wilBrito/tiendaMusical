@@ -32,7 +32,10 @@
 											<p:dataViewGridItem columns="4">
 												<p:panel header="#{artistaAlbumDto.album.nombre}" style="text-align:center; background-color:black; border: none">
 													<h:panelGrid columns="1" style="width:100%; text-align:center">
-														<p:graphicImage name="images/albums/#{artistaAlbumDto.album.imagen}" style="width:200px; height:200px"/>
+														<p:commandLink action="#{homeController.verDetalleAlbum(artistaAlbumDto)}">
+															<p:graphicImage name="images/albums/#{artistaAlbumDto.album.imagen}" style="width:200px; height:200px"/>
+														</p:commandLink>
+														
 														
 														<h:outputText value="#{artistaAlbumDto.artista.nombre}" style="color:white"/>
 														<h:outputText value="#{artistaAlbumDto.album.valor}" style="color:white">
@@ -44,7 +47,10 @@
 											
 											<p:dataViewListItem style="background-color:black">
 												<h:panelGrid columns="3" style="width:100%;background-color:black;border:none ">
-														<p:graphicImage name="images/albums/#{artistaAlbumDto.album.imagen}" style="width:250px; height:200px"/>
+														<p:commandLink action="#{homeController.verDetalleAlbum(artistaAlbumDto)}">
+															<p:graphicImage name="images/albums/#{artistaAlbumDto.album.imagen}" style="width:200px; height:200px"/>
+														</p:commandLink>
+														
 													<p:outputPanel>
 													
 														<h:panelGrid columns="2" cellpadding="5">
