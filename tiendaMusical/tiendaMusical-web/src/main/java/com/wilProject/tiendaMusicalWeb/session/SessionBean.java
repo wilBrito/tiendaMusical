@@ -15,6 +15,8 @@ public class SessionBean {
 	
 	private ArtistaAlbumDto artistaAlbumDto;
 	
+	private float totalCompra;
+	
 	@PostConstruct
 	public void init() {
 		System.out.println("Creando sesion...");
@@ -45,6 +47,22 @@ public class SessionBean {
 	public void setArtistaAlbumDto(ArtistaAlbumDto artistaAlbumDto) {
 		this.artistaAlbumDto = artistaAlbumDto;
 	}
+
+
+
+
+	public float getTotalCompra() {
+		return totalCompra;
+	}
+
+
+
+
+	public void setTotalCompra(float totalCompra) {
+		this.totalCompra = totalCompra;
+	}
+	
+	
 	
 	
 	

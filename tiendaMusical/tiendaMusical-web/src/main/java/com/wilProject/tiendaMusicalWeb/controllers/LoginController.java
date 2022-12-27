@@ -7,6 +7,8 @@ package com.wilProject.tiendaMusicalWeb.controllers;
 
 
 import java.io.IOException;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
@@ -14,6 +16,10 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import com.wilProject.tiendaMusicalEntities.entities.CarritoAlbum;
 import com.wilProject.tiendaMusicalEntities.entities.Persona;
 import com.wilProject.tiendaMusicalServices.service.LoginService;
 import com.wilProject.tiendaMusicalWeb.session.SessionBean;
@@ -29,6 +35,8 @@ import com.wilProject.tiendaMusicalWeb.utils.CommonUtils;
 @ManagedBean
 @ViewScoped
 public class LoginController{
+	
+	private static final Logger LOGGER = LogManager.getLogger(LoginController.class);
 
 	private String usuario;
 	private String password;
@@ -46,13 +54,24 @@ public class LoginController{
 	
 	
 	public void entrar() {
+		
+		
 		System.out.println(this.usuario + " " + this.password);
 		
 		Persona personaConsultada = this.lSer.consultarUsuarioLogin(this.usuario, this.password);
 		
 		if(personaConsultada != null)
 			try {
+				List<CarritoAlbum> carritoAlbumFiltrados = personaConsultada.getCarrito().getCarritoAlbum().stream().filter(ca ->
+					ca.getEstatus().equals("PENDIENTE")).collect(Collectors.toList());
+				
+				personaConsultada.getCarrito().setCarritoAlbum(carritoAlbumFiltrados);
+				
 				this.sessionBean.setPersona(personaConsultada);
+				
+				
+				LOGGER.info("Albums de carritos filtrados");
+				
 				
 				CommonUtils.redireccionar("/pages/commons/dashboard.xhtml");
 			} catch (IOException e) {
