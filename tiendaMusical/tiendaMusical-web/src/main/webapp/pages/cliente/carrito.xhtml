@@ -94,7 +94,7 @@
 		     									<p:outputLabel></p:outputLabel>
 		     									<p:outputLabel></p:outputLabel>
 		     									<p:outputLabel></p:outputLabel>
-		     									<p:commandButton value="Continuar" style="margin-top: 40px; width:100%" disabled="#{empty sessionBean.persona.carrito.carritoAlbum}"></p:commandButton>
+		     									<p:commandButton value="Continuar" style="margin-top: 40px; width:100%" disabled="#{empty sessionBean.persona.carrito.carritoAlbum}" action="#{pasosController.cambiarPaso('/pages/cliente/pago.xhtml',1)}"></p:commandButton>
 		     								</p:panelGrid>
 		     								
 		     								
