@@ -13,6 +13,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.wilProject.tiendaMusicalEntities.dto.ArtistaAlbumDto;
+import com.wilProject.tiendaMusicalEntities.entities.CarritoAlbum;
+import com.wilProject.tiendaMusicalServices.service.CarritoService;
 import com.wilProject.tiendaMusicalServices.service.HomeService;
 import com.wilProject.tiendaMusicalWeb.session.SessionBean;
 import com.wilProject.tiendaMusicalWeb.utils.CommonUtils;
@@ -32,6 +34,9 @@ public class HomeController {
 	
 	@ManagedProperty("#{sessionBean}")
 	private SessionBean sessionBean;
+	
+	@ManagedProperty("#{carritoServiceImpl}")
+	private CarritoService carritoServiceImpl;
 	
 	
 	@PostConstruct
@@ -63,6 +68,15 @@ public class HomeController {
 			CommonUtils.mostrarMensaje(FacesMessage.SEVERITY_ERROR, "UPS!!", "Problema al cargar la página");
 			e.printStackTrace();
 		}
+		
+	}
+	
+	public void agregarAlbumCarrito(ArtistaAlbumDto artistaAlbumDto) {
+		LOGGER.info("Agregando album: " + artistaAlbumDto.getAlbum().getNombre());
+		
+		CarritoAlbum carritoAlbum = this.carritoServiceImpl.guardarAlbumsCarrito(artistaAlbumDto, this.sessionBean.getPersona().getCarrito(), 1);
+		
+		this.sessionBean.getPersona().getCarrito().getCarritoAlbum().add(carritoAlbum);
 		
 	}
 	
@@ -101,6 +115,16 @@ public class HomeController {
 
 	public void setSessionBean(SessionBean sessionBean) {
 		this.sessionBean = sessionBean;
+	}
+
+
+	public CarritoService getCarritoServiceImpl() {
+		return carritoServiceImpl;
+	}
+
+
+	public void setCarritoServiceImpl(CarritoService carritoServiceImpl) {
+		this.carritoServiceImpl = carritoServiceImpl;
 	}
 	
 	

@@ -1,5 +1,8 @@
 package com.wilProject.tiendaMusicalServices.service.impl;
 
+import java.time.LocalDateTime;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -7,6 +10,7 @@ import com.wilProject.tiendaMusicalData.dao.CarritoAlbumDao;
 import com.wilProject.tiendaMusicalEntities.dto.ArtistaAlbumDto;
 import com.wilProject.tiendaMusicalEntities.entities.Carrito;
 import com.wilProject.tiendaMusicalEntities.entities.CarritoAlbum;
+import com.wilProject.tiendaMusicalEntities.entities.Factura;
 import com.wilProject.tiendaMusicalServices.service.CarritoService;
 
 @Service
@@ -52,6 +56,30 @@ public class CarritoServiceImpl implements CarritoService {
 		
 		return this.calacularTotal(carrito);
 		
+	}
+
+	@Override
+	public boolean actualizarCarritoAlbum(List<CarritoAlbum> carritoAlbums, Factura factura) {
+		
+		boolean actualizados = false;
+		
+		for(CarritoAlbum carritoAlbum : carritoAlbums) {
+			carritoAlbum.setEstatus("PAGADO");
+			carritoAlbum.setFechaCompra(LocalDateTime.now());
+			carritoAlbum.setFactura(factura);
+		}
+		
+		Iterable<CarritoAlbum> carritosActualizados =  this.carritoAlbumDao.saveAll(carritoAlbums);
+		
+		carritosActualizados.forEach(ca -> {
+			ca.getAlbum();
+		});
+		
+		if(carritosActualizados != null) {
+			actualizados = true;
+		}
+		
+		return actualizados;
 	}
 
 }

@@ -65,7 +65,7 @@
 			      											<p:ajax event="change" listener="#{carritoController.actualizarCantidadCarrito(carritoAlbum)}" update="formCarrito:pnlTotalCompra, formCarrito:dataViewDetalleCarrito"></p:ajax>
 														</p:selectOneMenu>
 														
-														<p:commandButton icon="pi pi-trash" style="background-color:red; border:none" action="#{carritoController.eliminarCarritoAlbum(carritoAlbum)}" update="formCarrito:menubar, formCarrito:dataViewDetalleCarrito,formCarrito:pnlTotalCompra">
+														<p:commandButton icon="pi pi-trash" style="background-color:red; border:none" action="#{carritoController.eliminarCarritoAlbum(carritoAlbum)}" update="formCarrito:menubar, formCarrito:dataViewDetalleCarrito,formCarrito:pnlTotalCompra,formCarrito:pnlBtnContinuar">
 															<p:confirm header="Confirmar" message="¿Estás seguro de eliminar el producto #{carritoAlbum.album.nombre}?" icon="pi pi-exclamation-triangle"></p:confirm>
 														</p:commandButton>
 														
@@ -94,7 +94,7 @@
 		     									<p:outputLabel></p:outputLabel>
 		     									<p:outputLabel></p:outputLabel>
 		     									<p:outputLabel></p:outputLabel>
-		     									<p:commandButton value="Continuar" style="margin-top: 40px; width:100%" disabled="#{empty sessionBean.persona.carrito.carritoAlbum}" action="#{pasosController.cambiarPaso('/pages/cliente/pago.xhtml',1)}"></p:commandButton>
+		     									<p:commandButton id="pnlBtnContinuar" value="Continuar" style="margin-top: 40px; width:100%" disabled="#{empty sessionBean.persona.carrito.carritoAlbum}" action="#{pasosController.cambiarPaso('/pages/cliente/pago.xhtml',1)}"></p:commandButton>
 		     								</p:panelGrid>
 		     								
 		     								

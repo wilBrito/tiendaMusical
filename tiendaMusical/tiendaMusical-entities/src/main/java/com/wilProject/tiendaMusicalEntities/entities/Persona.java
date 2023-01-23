@@ -32,6 +32,9 @@ public class Persona  extends Common{
 	@Column(name = "segundoApellido", length = 45, nullable = false)
 	private String segundoApellido;
 	
+	@Column(name = "email", length = 200, nullable = false)
+	private String email;
+	
 	@Column(name = "imagen", length = 100)
 	private String imagen;
 	
@@ -121,6 +124,12 @@ public class Persona  extends Common{
 	}
 	public void setCarrito(Carrito carrito) {
 		this.carrito = carrito;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	
 	
